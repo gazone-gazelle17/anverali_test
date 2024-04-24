@@ -1,0 +1,108 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "psycopg2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "psycopg2",
+        "description": "psycopg2",
+        "detail": "psycopg2",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "Bitrix",
+        "importPath": "fast_bitrix24",
+        "description": "fast_bitrix24",
+        "isExtraImport": true,
+        "detail": "fast_bitrix24",
+        "documentation": {}
+    },
+    {
+        "label": "get_contact_data",
+        "kind": 2,
+        "importPath": "bitrix24_testcase",
+        "description": "bitrix24_testcase",
+        "peekOfCode": "def get_contact_data(contact_id):\n    \"\"\"Получает данные контакта.\"\"\"\n    try:\n        contact = bitrix.get_all('crm.contact.get', params={'id': contact_id})\n        return contact\n    except Exception as e:\n        print(\"Возникла ошибка получения данных\", e)\n        return None\ndef check_name_gender(contact_name):\n    \"\"\"Проверяет имя на принадлежность к гендеру.\"\"\"",
+        "detail": "bitrix24_testcase",
+        "documentation": {}
+    },
+    {
+        "label": "check_name_gender",
+        "kind": 2,
+        "importPath": "bitrix24_testcase",
+        "description": "bitrix24_testcase",
+        "peekOfCode": "def check_name_gender(contact_name):\n    \"\"\"Проверяет имя на принадлежность к гендеру.\"\"\"\n    with conn.cursor() as cur:\n        cur.execute(\n            'SELECT 1 FROM names_woman WHERE name = %s', (contact_name,)\n        )\n        if cur.fetchone():\n            return 'Женщина'\n        cur.execute(\n            'SELECT 1 FROM names_man WHERE name = %s', (contact_name,)",
+        "detail": "bitrix24_testcase",
+        "documentation": {}
+    },
+    {
+        "label": "update_contact",
+        "kind": 2,
+        "importPath": "bitrix24_testcase",
+        "description": "bitrix24_testcase",
+        "peekOfCode": "def update_contact(contact_id, gender):\n    \"\"\"Обновляет гендер контакта.\"\"\"\n    try:\n        result = bitrix.call(\n            'crm.contact.update',\n            {'id': contact_id, 'fields': {'gender': gender}}\n        )\n        return result\n    except Exception as e:\n        print(\"Ошибка при обновлении контакта:\", e)",
+        "detail": "bitrix24_testcase",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "bitrix24_testcase",
+        "description": "bitrix24_testcase",
+        "peekOfCode": "def main():\n    \"\"\"Итоговая логика программы.\"\"\"\n    contact_id = input(\"Введите ID контакта: \")\n    contact_name = input(\n        \"Введите имя контакта (оставьте пустым, если имя неизвестно): \"\n    )\n    if not contact_name:\n        contact_data = get_contact_data(contact_id)\n        if contact_data:\n            contact_name = contact_data['NAME']",
+        "detail": "bitrix24_testcase",
+        "documentation": {}
+    },
+    {
+        "label": "webhook",
+        "kind": 5,
+        "importPath": "bitrix24_testcase",
+        "description": "bitrix24_testcase",
+        "peekOfCode": "webhook = os.getenv('WEBHOOK')\ndatabase_url = os.getenv('DATABASE_URL')\n# Инициализирует Bitrix\nbitrix = Bitrix(webhook)\n# Подключается к базе данных\nconn = psycopg2.connect(database_url)\ndef get_contact_data(contact_id):\n    \"\"\"Получает данные контакта.\"\"\"\n    try:\n        contact = bitrix.get_all('crm.contact.get', params={'id': contact_id})",
+        "detail": "bitrix24_testcase",
+        "documentation": {}
+    },
+    {
+        "label": "database_url",
+        "kind": 5,
+        "importPath": "bitrix24_testcase",
+        "description": "bitrix24_testcase",
+        "peekOfCode": "database_url = os.getenv('DATABASE_URL')\n# Инициализирует Bitrix\nbitrix = Bitrix(webhook)\n# Подключается к базе данных\nconn = psycopg2.connect(database_url)\ndef get_contact_data(contact_id):\n    \"\"\"Получает данные контакта.\"\"\"\n    try:\n        contact = bitrix.get_all('crm.contact.get', params={'id': contact_id})\n        return contact",
+        "detail": "bitrix24_testcase",
+        "documentation": {}
+    },
+    {
+        "label": "bitrix",
+        "kind": 5,
+        "importPath": "bitrix24_testcase",
+        "description": "bitrix24_testcase",
+        "peekOfCode": "bitrix = Bitrix(webhook)\n# Подключается к базе данных\nconn = psycopg2.connect(database_url)\ndef get_contact_data(contact_id):\n    \"\"\"Получает данные контакта.\"\"\"\n    try:\n        contact = bitrix.get_all('crm.contact.get', params={'id': contact_id})\n        return contact\n    except Exception as e:\n        print(\"Возникла ошибка получения данных\", e)",
+        "detail": "bitrix24_testcase",
+        "documentation": {}
+    },
+    {
+        "label": "conn",
+        "kind": 5,
+        "importPath": "bitrix24_testcase",
+        "description": "bitrix24_testcase",
+        "peekOfCode": "conn = psycopg2.connect(database_url)\ndef get_contact_data(contact_id):\n    \"\"\"Получает данные контакта.\"\"\"\n    try:\n        contact = bitrix.get_all('crm.contact.get', params={'id': contact_id})\n        return contact\n    except Exception as e:\n        print(\"Возникла ошибка получения данных\", e)\n        return None\ndef check_name_gender(contact_name):",
+        "detail": "bitrix24_testcase",
+        "documentation": {}
+    }
+]
